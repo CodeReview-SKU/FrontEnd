@@ -5,16 +5,16 @@ import commentIcon from '../../images/commentIcon.png';
 import likeIcon from '../../images/likeIcon2.png'
 
 
-const PostHeaderContainer = styled.div`
+const PostDetailContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left :20px;
     margin-right: 20px;
 `;
 
-const PostTitle = styled.h1`
+const PostDetail = styled.h4`
     margin: 0;
     font-weight: bold;
     color: black;
@@ -31,20 +31,14 @@ const Icon = styled.img`
     height: 12px; 
 `;
 
-const PostHeader = ({ category, title, comments, likes}) => {
+const PostDetails = ({ author, date}) => {
     return (
-        <PostHeaderContainer>
+        <PostDetailContainer>
             <div>
-                <PostTitle>{category} | {title}</PostTitle>
+                <PostDetail>{author} | {date}</PostDetail>
             </div>
-            <MetaInfo>
-                <Icon src={commentIcon} alt="comment icon" />
-                <span>{comments}  </span>
-                <Icon src={likeIcon} alt="like icon" />
-                <span>{likes}</span>
-            </MetaInfo>
-        </PostHeaderContainer>
+        </PostDetailContainer>
     );
 };
 
-export default PostHeader;
+export default PostDetails;

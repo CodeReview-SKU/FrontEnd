@@ -6,12 +6,12 @@ const StyledButton = styled.button`
 
     background-color: ${({ isCategorySelected }) => (isCategorySelected ? "#CCCCCC" : "white")};
     color: ${({ isCategorySelected }) => (isCategorySelected ? "black" : "black")};
-    font-size: 16px;
+    font-size: 15px;
     padding: 5px 15px;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
-    min-width: 93px;
-    height: 35px;
+    min-width: 83px;
+    height: 33px;
     cursor: pointer;
 
 

@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchDataById } from '../../dummydata';
+import {fetchCommentsByPostId} from '../../dummycomments';
 import { styled } from "styled-components";
 
 import Header from "../section/Header";
 import PostHeader from "../section/PostHeader";
+import PostDetails from "../section/PostDetails";
+import PostTagSection from "../section/PostTagSection";
+import PostBody from "../section/PostBody";
+import PostComment from "../section/PostComment";
 
 
 const BoardViewPage = () => {
@@ -13,10 +18,14 @@ const BoardViewPage = () => {
     const postId = parseInt(params.get('id'));
 
     const [postData, setPostData] = useState(null);
+    const [postComments, setPostComments] = useState(null);
 
     useEffect(() => {
         const data = fetchDataById(postId);
         setPostData(data);
+        const comments = fetchCommentsByPostId(postId);
+        setPostComments(comments);
+        console.log(postComments);
     }, [postId]);
 
     return (
@@ -29,21 +38,25 @@ const BoardViewPage = () => {
                         title={postData.title}
                         comments={postData.comments}
                         likes={postData.likes}
+                        author={postData.author}
+                        date={postData.data}
                     />
-                    <h2>{postData.author} | {postData.date}</h2>
-                    <h3>
-                        {postData.tags.map((tag, index) => (
-                            <span key={index}>{tag} </span>
-                        ))}
-                    </h3>
-                    <h4>{postData.content}</h4>
-                    
+                    <PostDetails
+                        author={postData.author}
+                        date={postData.date}
+                    />
+                    <PostTagSection
+                        tags={postData.tags}
+                    />
+                    <PostBody
+                        content={postData.content}
+                    />
                 </div>
             )}
             <hr/>
-            <h2>댓글</h2>
-            <input placeholder="댓글 작성하는 곳"></input>
-            <button>댓글 작성</button>
+            <PostComment/>
+            <hr/>
+
         </div>
     );
 };
